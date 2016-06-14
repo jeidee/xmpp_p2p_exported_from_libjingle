@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="talk\base\asyncfile.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\asynchttprequest.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\asyncsocket.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\asynctcpsocket.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\asyncudpsocket.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\autodetectproxy.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\bandwidthsmoother.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\base64.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\basicpacketsocketfactory.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\bytebuffer.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\checks.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\common.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\cpumonitor.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\crc32.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\dbus.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\diskcache.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\diskcache_win32.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\event.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\filelock.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\fileutils.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\firewallsocketserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\flags.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\helpers.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\host.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\httpbase.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\httpclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\httpcommon.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\httprequest.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\httpserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\ifaddrs-android.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\ipaddress.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\json.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\libdbusglibsymboltable.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\logging.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\md5.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\messagedigest.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\messagehandler.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\messagequeue.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\multipart.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\natserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\natsocketfactory.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\nattypes.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\nethelpers.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\network.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\nssidentity.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\nssstreamadapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\openssladapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\openssldigest.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\opensslidentity.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\opensslstreamadapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\optionsfile.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\pathutils.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\physicalsocketserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\proxydetect.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\proxyinfo.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\proxyserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\ratelimiter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\ratetracker.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\schanneladapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\sha1.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\sharedexclusivelock.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\signalthread.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\socketadapters.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\socketaddress.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\socketaddresspair.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\socketpool.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\socketstream.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\ssladapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\sslidentity.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\sslsocketfactory.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\sslstreamadapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\sslstreamadapterhelper.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\stream.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\stringencode.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\stringutils.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\systeminfo.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\task.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\taskparent.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\taskrunner.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\testclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\thread.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\timeutils.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\timing.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\transformadapter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\urlencode.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\versionparsing.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\virtualsocketserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32filesystem.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32regkey.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32securityerrors.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32socketinit.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32socketserver.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32window.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\win32windowpicker.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\winfirewall.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\winping.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\base\worker.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="talk\base\asyncfile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\asynchttprequest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\asyncpacketsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\asyncsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\asynctcpsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\asyncudpsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\atomicops.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\autodetectproxy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\bandwidthsmoother.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\base64.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\basicdefs.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\basicpacketsocketfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\basictypes.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\buffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\bytebuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\byteorder.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\checks.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\constructormagic.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\cpumonitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\crc32.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\criticalsection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\cryptstring.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\dbus.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\diskcache.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\diskcache_win32.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\event.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\fakenetwork.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\fakesslidentity.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\faketaskrunner.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\filelock.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\fileutils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\fileutils_mock.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\firewallsocketserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\flags.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\gunit.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\gunit_prod.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\helpers.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\host.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\httpbase.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\httpclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\httpcommon.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\httpcommon-inl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\httprequest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\httpserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\ifaddrs-android.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\ipaddress.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\json.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\latebindingsymboltable.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\libdbusglibsymboltable.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\linked_ptr.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\logging.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\mathutils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\md5.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\md5digest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\messagedigest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\messagehandler.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\messagequeue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\multipart.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\natserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\natsocketfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\nattypes.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\nethelpers.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\network.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\nssidentity.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\nssstreamadapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\nullsocketserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\openssladapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\openssldigest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\opensslidentity.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\opensslstreamadapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\optionsfile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\packetsocketfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\pathutils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\physicalsocketserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\proxydetect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\proxyinfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\proxyserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\ratelimiter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\ratetracker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\refcount.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\referencecountedsingletonfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\rollingaccumulator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\schanneladapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\scoped_autorelease_pool.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\scoped_ptr.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\scoped_ref_ptr.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sec_buffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sha1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sha1digest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sharedexclusivelock.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\signalthread.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sigslot.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sigslotrepeater.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketadapters.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketaddress.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketaddresspair.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketpool.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\socketstream.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\ssladapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslconfig.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslfingerprint.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslidentity.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslroots.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslsocketfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslstreamadapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\sslstreamadapterhelper.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\stream.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\stringdigest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\stringencode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\stringutils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\systeminfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\task.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\taskparent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\taskrunner.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\testbase64.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\testclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\testechoserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\testutils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\thread.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\timeutils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\timing.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\transformadapter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\urlencode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\versionparsing.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\virtualsocketserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32filesystem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32regkey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32socketinit.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32socketserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32toolhelp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32window.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\win32windowpicker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\window.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\windowpicker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\windowpickerfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\winfirewall.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\winping.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\base\worker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

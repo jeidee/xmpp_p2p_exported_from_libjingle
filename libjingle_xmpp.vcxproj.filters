@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="talk\xmpp\asyncsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\chatroommodule.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\constants.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\discoitemsquerytask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\fakexmppclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\hangoutpubsubclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\iqtask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\jid.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\jingleinfotask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\module.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\moduleimpl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\mucroomconfigtask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\mucroomdiscoverytask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\mucroomlookuptask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\mucroomuniquehangoutidtask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\pingtask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\plainsaslhandler.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\presenceouttask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\presencereceivetask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\presencestatus.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\prexmppauth.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\pubsub_task.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\pubsubclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\pubsubtasks.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\receivetask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\rostermodule.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\rostermoduleimpl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\saslcookiemechanism.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\saslhandler.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\saslmechanism.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\saslplainmechanism.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\util_unittest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppauth.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppclientsettings.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppengine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppengineimpl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmpplogintask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmpppump.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppstanzaparser.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmpptask.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\xmpp\xmppthread.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="talk\xmpp\chatroommoduleimpl.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\constants.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\discoitemsquerytask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\hangoutpubsubclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\iqtask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\jid.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\jingleinfotask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\moduleimpl.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\mucroomconfigtask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\mucroomdiscoverytask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\mucroomlookuptask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\mucroomuniquehangoutidtask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\pingtask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\presenceouttask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\presencereceivetask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\presencestatus.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\pubsub_task.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\pubsubclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\pubsubtasks.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\receivetask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\rostermoduleimpl.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\saslmechanism.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\util_unittest.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppauth.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppengineimpl.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppengineimpl_iq.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmpplogintask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmpppump.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppsocket.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppstanzaparser.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmpptask.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\xmpp\xmppthread.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
