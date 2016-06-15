@@ -41,7 +41,7 @@
 #include <algorithm>
 #include <iostream>
 #include "talk/base/common.h"
-//#include "talk/base/logging.h"
+#include "talk/base/logging.h"
 
 //////////////////////////////////////////////////////////////////////
 // Assertions
@@ -65,10 +65,10 @@ void Break() {
 void LogAssert(const char * function, const char * file, int line,
                const char * expression) {
   // TODO - if we put hooks in here, we can do a lot fancier logging
-  //LOG(LS_ERROR) << file << "(" << line << ")" << ": ASSERT FAILED: "
-  //              << expression << " @ " << function;
-  std::cout << file << "(" << line << ")" << ": ASSERT FAILED: "
+  LOG(LS_ERROR) << file << "(" << line << ")" << ": ASSERT FAILED: "
                 << expression << " @ " << function;
+  //std::cout << file << "(" << line << ")" << ": ASSERT FAILED: "
+  //              << expression << " @ " << function;
 }
 
 } // namespace talk_base

@@ -403,7 +403,13 @@ bool HttpDateToSeconds(const std::string& date, time_t* seconds) {
   tm *tm_for_timezone = localtime((time_t *)&gmt);
   *seconds = gmt + tm_for_timezone->tm_gmtoff;
 #else
-  *seconds = non_gmt; //gmt - timezone;
+  // (jeidee) Global variable timezone is deprecated in vs2013.
+#if (defined(WIN32) && _MSC_VER >= 1900)
+  long timezone = 0;
+  _get_timezone(&timezone);
+#else
+  *seconds = gmt - timezone;
+#endif
 #endif
   return true;
 }
