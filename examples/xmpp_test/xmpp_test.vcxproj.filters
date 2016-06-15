@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="xmpp_login.cpp">
+    <ClCompile Include="xmpp_test.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

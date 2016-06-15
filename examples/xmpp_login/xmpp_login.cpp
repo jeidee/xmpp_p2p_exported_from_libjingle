@@ -68,7 +68,6 @@ int main(int argc, char *argv[]) {
 	xcs.set_host(host.c_str());
 	xcs.set_allow_plain(true);
 	xcs.set_auth_token(buzz::AUTH_MECHANISM_PLAIN, auth_token.c_str());
-
 	xcs.set_use_tls(buzz::TLS_ENABLED);
 	//xcs.set_auth_token(buzz::AUTH_MECHANISM_OAUTH2,
 	//	auth_token.c_str());

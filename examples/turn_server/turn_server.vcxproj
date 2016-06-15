@@ -19,33 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B160427A-65F1-4C26-9F8A-FEB8FEEBFF52}</ProjectGuid>
+    <ProjectGuid>{6CD2F251-A3B9-43F2-8C1D-A83729DA663A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>libjingle_xmlite</RootNamespace>
+    <RootNamespace>turn_server</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -69,18 +69,29 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FEATURE_ENABLE_SSL;XML_STATIC;_WINDOWS;COMPILED_FROM_DSP;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./;./talk</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -89,10 +100,11 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -103,14 +115,13 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>FEATURE_ENABLE_SSL;XML_STATIC;_WINDOWS;COMPILED_FROM_DSP;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./;./talk</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,58 +132,16 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmlparse.c" />
-    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmlrole.c" />
-    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok.c" />
-    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok_impl.c" />
-    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok_ns.c" />
-    <ClCompile Include="talk\xmllite\qname.cc" />
-    <ClCompile Include="talk\xmllite\xmlbuilder.cc" />
-    <ClCompile Include="talk\xmllite\xmlconstants.cc" />
-    <ClCompile Include="talk\xmllite\xmlelement.cc" />
-    <ClCompile Include="talk\xmllite\xmlnsstack.cc" />
-    <ClCompile Include="talk\xmllite\xmlparser.cc" />
-    <ClCompile Include="talk\xmllite\xmlprinter.cc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\amigaconfig.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\ascii.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\asciitab.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\expat.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\expat_external.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\iasciitab.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\internal.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\latin1tab.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\macconfig.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\nametab.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\utf8tab.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\winconfig.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\xmlrole.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok.h" />
-    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok_impl.h" />
-    <ClInclude Include="talk\xmllite\qname.h" />
-    <ClInclude Include="talk\xmllite\xmlbuilder.h" />
-    <ClInclude Include="talk\xmllite\xmlconstants.h" />
-    <ClInclude Include="talk\xmllite\xmlelement.h" />
-    <ClInclude Include="talk\xmllite\xmlnsstack.h" />
-    <ClInclude Include="talk\xmllite\xmlparser.h" />
-    <ClInclude Include="talk\xmllite\xmlprinter.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="talk\third_party\expat\v2_0_1\Source\lib\libexpat.def" />
-    <None Include="talk\third_party\expat\v2_0_1\Source\lib\libexpatw.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
