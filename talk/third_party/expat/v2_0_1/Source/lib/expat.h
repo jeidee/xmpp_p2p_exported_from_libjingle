@@ -17,6 +17,10 @@
 #include <stdlib.h>
 #include "expat_external.h"
 
+#ifdef WIN32
+#include "winconfig.h"
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

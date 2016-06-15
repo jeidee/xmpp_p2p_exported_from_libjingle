@@ -229,6 +229,14 @@ bool ByteBuffer::Consume(size_t size) {
   return true;
 }
 
+void ByteBuffer::Shift(size_t size) {
+	if (size > Length())
+		return;
+	end_ = Length() - size;
+	memmove(bytes_, bytes_ + start_ + size, end_);
+	start_ = 0;
+}
+
 ByteBuffer::ReadPosition ByteBuffer::GetReadPosition() const {
   return ReadPosition(start_, version_);
 }

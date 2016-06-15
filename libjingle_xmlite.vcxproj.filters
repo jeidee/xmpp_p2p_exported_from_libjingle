@@ -39,6 +39,21 @@
     <ClCompile Include="talk\xmllite\xmlprinter.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmlparse.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmlrole.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok_impl.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok_ns.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="talk\xmllite\qname.h">
@@ -62,5 +77,58 @@
     <ClInclude Include="talk\xmllite\xmlprinter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\amigaconfig.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\ascii.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\asciitab.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\expat.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\expat_external.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\iasciitab.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\internal.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\latin1tab.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\macconfig.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\nametab.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\utf8tab.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\winconfig.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\xmlrole.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\third_party\expat\v2_0_1\Source\lib\xmltok_impl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="talk\third_party\expat\v2_0_1\Source\lib\libexpat.def">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="talk\third_party\expat\v2_0_1\Source\lib\libexpatw.def">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
 </Project>
