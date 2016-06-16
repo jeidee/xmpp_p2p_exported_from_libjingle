@@ -18,12 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chatapp.cc" />
+    <ClCompile Include="chat_main.cc" />
+    <ClCompile Include="consoletask.cc" />
+    <ClCompile Include="textchatreceivetask.cc" />
+    <ClCompile Include="textchatsendtask.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="chatapp.h" />
+    <ClInclude Include="consoletask.h" />
+    <ClInclude Include="textchatreceivetask.h" />
+    <ClInclude Include="textchatsendtask.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FCD7CB4C-DA7D-405D-A32A-3340CCD45A27}</ProjectGuid>
+    <ProjectGuid>{CFEDB90D-3B3A-4E9B-8767-90C670AAD89A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>xmpp_test</RootNamespace>
+    <RootNamespace>xmpp_chat</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>xmpp_test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -94,8 +106,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>crypt32.lib;iphlpapi.lib;wininet.lib;secur32.lib;winmm.lib;ws2_32.lib;libjingle_base.lib;libjingle_xmlite.lib;libjingle_p2p.lib;libjingle_xmpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -127,8 +139,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../Release</AdditionalLibraryDirectories>
       <AdditionalDependencies>crypt32.lib;iphlpapi.lib;wininet.lib;secur32.lib;winmm.lib;ws2_32.lib;libjingle_base.lib;libjingle_xmlite.lib;libjingle_p2p.lib;libjingle_xmpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,9 +160,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="xmpp_test.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
