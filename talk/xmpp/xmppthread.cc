@@ -72,7 +72,7 @@ void XmppThread::OnMessage(talk_base::Message* pmsg) {
   if (pmsg->message_id == MSG_LOGIN) {
     ASSERT(pmsg->pdata != NULL);
     LoginData* data = reinterpret_cast<LoginData*>(pmsg->pdata);
-    pump_->DoLogin(data->xcs, new XmppSocket(data->xcs.use_tls()),
+    pump_->DoLogin(data->xcs, new XmppSocket(buzz::TLS_DISABLED),
         new XmppAuth());
     delete data;
   } else if (pmsg->message_id == MSG_DISCONNECT) {

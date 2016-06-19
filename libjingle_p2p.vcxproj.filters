@@ -171,11 +171,74 @@
     <ClInclude Include="talk\p2p\client\socketmonitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="talk\session\tunnel\pseudotcpchannel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\tunnel\securetunnelsessionclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\tunnel\tunnelsessionclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\audiomonitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\call.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\channel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\channelmanager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\currentspeakermonitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\mediamessages.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\mediamonitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\mediarecorder.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\mediasession.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\mediasessionclient.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\mediasink.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\rtcpmuxfilter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\soundclip.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\srtpfilter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\ssrcmuxfilter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\typingmonitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\session\media\voicechannel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\p2p\base\asyncstuntcpsocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="talk\p2p\base\basicpacketsocketfactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="talk\p2p\base\constants1.cc">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="talk\p2p\base\dtlstransportchannel.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -270,6 +333,69 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="talk\p2p\client\socketmonitor.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\tunnel\pseudotcpchannel.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\tunnel\securetunnelsessionclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\tunnel\tunnelsessionclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\audiomonitor.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\call.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\channel.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\channelmanager.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\currentspeakermonitor.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\mediamessages.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\mediamonitor.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\mediarecorder.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\mediasession.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\mediasessionclient.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\rtcpmuxfilter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\soundclip.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\srtpfilter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\ssrcmuxfilter.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\session\media\typingmonitor.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\p2p\base\constants.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\p2p\base\asyncstuntcpsocket.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="talk\p2p\base\basicpacketsocketfactory.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

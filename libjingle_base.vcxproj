@@ -140,7 +140,6 @@
     <ClCompile Include="talk\base\autodetectproxy.cc" />
     <ClCompile Include="talk\base\bandwidthsmoother.cc" />
     <ClCompile Include="talk\base\base64.cc" />
-    <ClCompile Include="talk\base\basicpacketsocketfactory.cc" />
     <ClCompile Include="talk\base\bytebuffer.cc" />
     <ClCompile Include="talk\base\checks.cc" />
     <ClCompile Include="talk\base\common.cc" />
@@ -243,7 +242,6 @@
     <ClInclude Include="talk\base\bandwidthsmoother.h" />
     <ClInclude Include="talk\base\base64.h" />
     <ClInclude Include="talk\base\basicdefs.h" />
-    <ClInclude Include="talk\base\basicpacketsocketfactory.h" />
     <ClInclude Include="talk\base\basictypes.h" />
     <ClInclude Include="talk\base\buffer.h" />
     <ClInclude Include="talk\base\bytebuffer.h" />

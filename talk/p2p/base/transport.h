@@ -143,6 +143,43 @@ enum TransportState {
   TRANSPORT_STATE_ALL
 };
 
+// Stats that we can return about the connections for a transport channel.
+// TODO(hta): Rename to ConnectionStats
+struct ConnectionInfo {
+  bool best_connection;        // Is this the best connection we have?
+  bool writable;               // Has this connection received a STUN response?
+  bool readable;               // Has this connection received a STUN request?
+  bool timeout;                // Has this connection timed out?
+  bool new_connection;         // Is this a newly created connection?
+  size_t rtt;                  // The STUN RTT for this connection.
+  size_t sent_total_bytes;     // Total bytes sent on this connection.
+  size_t sent_bytes_second;    // Bps over the last measurement interval.
+  size_t recv_total_bytes;     // Total bytes received on this connection.
+  size_t recv_bytes_second;    // Bps over the last measurement interval.
+  Candidate local_candidate;   // The local candidate for this connection.
+  Candidate remote_candidate;  // The remote candidate for this connection.
+  void* key;                   // A static value that identifies this conn.
+};
+
+// Information about all the connections of a channel.
+typedef std::vector<ConnectionInfo> ConnectionInfos;
+
+// Information about a specific channel
+struct TransportChannelStats {
+  int component;
+  ConnectionInfos connection_infos;
+};
+
+// Information about all the channels of a transport.
+// TODO(hta): Consider if a simple vector is as good as a map.
+typedef std::vector<TransportChannelStats> TransportChannelStatsList;
+
+// Information about the stats of a transport.
+struct TransportStats {
+  std::string content_name;
+  TransportChannelStatsList channel_stats;
+};
+
 class Transport : public talk_base::MessageHandler,
                   public sigslot::has_slots<> {
  public:
@@ -173,6 +210,7 @@ class Transport : public talk_base::MessageHandler,
   // any_channels_readable() and any_channels_writable().
   bool readable() const { return any_channels_readable(); }
   bool writable() const { return any_channels_writable(); }
+  bool was_writable() const { return was_writable_; }
   bool any_channels_readable() const {
     return (readable_ == TRANSPORT_STATE_SOME ||
             readable_ == TRANSPORT_STATE_ALL);
@@ -233,6 +271,8 @@ class Transport : public talk_base::MessageHandler,
 
   // Destroys every channel created so far.
   void DestroyAllChannels();
+
+  bool GetStats(TransportStats* stats);
 
   // Before any stanza is sent, the manager will request signaling.  Once
   // signaling is available, the client should call OnSignalingReady.  Once
@@ -300,6 +340,10 @@ class Transport : public talk_base::MessageHandler,
   // Derived classes can override, but must call the base as well.
   virtual bool ApplyLocalTransportDescription_w(TransportChannelImpl*
                                                 channel);
+
+  // Pushes down remote ice credentials from the remote description to the
+  // transport channel.
+  virtual bool ApplyRemoteTransportDescription_w(TransportChannelImpl* ch);
 
   // Negotiates the transport parameters based on the current local and remote
   // transport description, such at the version of ICE to use, and whether DTLS
@@ -393,11 +437,13 @@ class Transport : public talk_base::MessageHandler,
 
   void OnChannelCandidateReady_s();
 
-  void SetRole_w();
+  void SetRole_w(TransportRole role);
+  void SetRemoteIceMode_w(IceMode mode);
   bool SetLocalTransportDescription_w(const TransportDescription& desc,
                                       ContentAction action);
   bool SetRemoteTransportDescription_w(const TransportDescription& desc,
                                        ContentAction action);
+  bool GetStats_w(TransportStats* infos);
 
   talk_base::Thread* signaling_thread_;
   talk_base::Thread* worker_thread_;
@@ -407,10 +453,12 @@ class Transport : public talk_base::MessageHandler,
   bool destroyed_;
   TransportState readable_;
   TransportState writable_;
+  bool was_writable_;
   bool connect_requested_;
   TransportRole role_;
   uint64 tiebreaker_;
   TransportProtocol protocol_;
+  IceMode remote_ice_mode_;
   talk_base::scoped_ptr<TransportDescription> local_description_;
   talk_base::scoped_ptr<TransportDescription> remote_description_;
 

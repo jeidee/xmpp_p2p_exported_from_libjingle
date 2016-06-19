@@ -163,7 +163,6 @@
     <ClInclude Include="talk\xmpp\saslhandler.h" />
     <ClInclude Include="talk\xmpp\saslmechanism.h" />
     <ClInclude Include="talk\xmpp\saslplainmechanism.h" />
-    <ClInclude Include="talk\xmpp\util_unittest.h" />
     <ClInclude Include="talk\xmpp\xmppauth.h" />
     <ClInclude Include="talk\xmpp\xmppclient.h" />
     <ClInclude Include="talk\xmpp\xmppclientsettings.h" />
@@ -199,7 +198,6 @@
     <ClCompile Include="talk\xmpp\receivetask.cc" />
     <ClCompile Include="talk\xmpp\rostermoduleimpl.cc" />
     <ClCompile Include="talk\xmpp\saslmechanism.cc" />
-    <ClCompile Include="talk\xmpp\util_unittest.cc" />
     <ClCompile Include="talk\xmpp\xmppauth.cc" />
     <ClCompile Include="talk\xmpp\xmppclient.cc" />
     <ClCompile Include="talk\xmpp\xmppengineimpl.cc" />

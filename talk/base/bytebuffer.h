@@ -97,8 +97,6 @@ class ByteBuffer {
   // after this call.
   bool Consume(size_t size);
 
-  void Shift(size_t size);
-
   // Clears the contents of the buffer. After this, Length() will be 0.
   void Clear();
 

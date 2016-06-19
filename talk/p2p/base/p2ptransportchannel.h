@@ -76,10 +76,14 @@ class P2PTransportChannel : public TransportChannelImpl,
   // From TransportChannelImpl:
   virtual Transport* GetTransport() { return transport_; }
   virtual void SetRole(TransportRole role);
+  virtual TransportRole GetRole() const { return role_; }
   virtual void SetTiebreaker(uint64 tiebreaker);
   virtual void SetIceProtocolType(IceProtocolType type);
-  virtual void SetIceUfrag(const std::string& ice_ufrag);
-  virtual void SetIcePwd(const std::string& ice_pwd);
+  virtual void SetIceCredentials(const std::string& ice_ufrag,
+                                 const std::string& ice_pwd);
+  virtual void SetRemoteIceCredentials(const std::string& ice_ufrag,
+                                       const std::string& ice_pwd);
+  virtual void SetRemoteIceMode(IceMode mode);
   virtual void Connect();
   virtual void Reset();
   virtual void OnSignalingReady();
@@ -98,6 +102,8 @@ class P2PTransportChannel : public TransportChannelImpl,
   // |ports_| should not be changed from outside.
   const std::vector<PortInterface *>& ports() { return ports_; }
 
+  IceMode remote_ice_mode() const { return remote_ice_mode_; }
+
  private:
   talk_base::Thread* thread() { return worker_thread_; }
   PortAllocatorSession* allocator_session() {
@@ -113,18 +119,22 @@ class P2PTransportChannel : public TransportChannelImpl,
   void HandleWritable();
   void HandleNotWritable();
   void HandleAllTimedOut();
+
   Connection* GetBestConnectionOnNetwork(talk_base::Network* network);
   bool CreateConnections(const Candidate &remote_candidate,
                          PortInterface* origin_port, bool readable);
   bool CreateConnection(PortInterface* port, const Candidate& remote_candidate,
                         PortInterface* origin_port, bool readable);
   bool FindConnection(cricket::Connection* connection) const;
+
+  uint32 GetRemoteCandidateGeneration(const Candidate& candidate);
   void RememberRemoteCandidate(const Candidate& remote_candidate,
                                PortInterface* origin_port);
   bool IsPingable(Connection* conn);
   Connection* FindNextPingableConnection();
-  int NumPingableConnections();
+  void PingConnection(Connection* conn);
   void AddAllocatorSession(PortAllocatorSession* session);
+  void AddConnection(Connection* connection);
 
   void OnPortReady(PortAllocatorSession *session, PortInterface* port);
   void OnCandidatesReady(PortAllocatorSession *session,
@@ -137,12 +147,12 @@ class P2PTransportChannel : public TransportChannelImpl,
                         const std::string& remote_username,
                         bool port_muxed);
   void OnPortDestroyed(PortInterface* port);
+  void OnRoleConflict(PortInterface* port);
 
   void OnConnectionStateChange(Connection *connection);
   void OnReadPacket(Connection *connection, const char *data, size_t len);
+  void OnReadyToSend(Connection* connection);
   void OnConnectionDestroyed(Connection *connection);
-  void NominateBestConnection();
-  void OnRoleConflict();
 
   void OnUseCandidate(Connection* conn);
 
@@ -159,18 +169,24 @@ class P2PTransportChannel : public TransportChannelImpl,
   std::vector<PortAllocatorSession*> allocator_sessions_;
   std::vector<PortInterface *> ports_;
   std::vector<Connection *> connections_;
-  Connection *best_connection_;
+  Connection* best_connection_;
+  // Connection selected by the controlling agent. This should be used only
+  // at controlled side when protocol type is RFC5245.
+  Connection* pending_best_connection_;
   std::vector<RemoteCandidate> remote_candidates_;
   bool sort_dirty_;  // indicates whether another sort is needed right now
   bool was_writable_;
-  bool was_timed_out_;
   typedef std::map<talk_base::Socket::Option, int> OptionMap;
   OptionMap options_;
   std::string ice_ufrag_;
   std::string ice_pwd_;
+  std::string remote_ice_ufrag_;
+  std::string remote_ice_pwd_;
   IceProtocolType protocol_type_;
+  IceMode remote_ice_mode_;
   TransportRole role_;
   uint64 tiebreaker_;
+  uint32 remote_candidate_generation_;
 
   DISALLOW_EVIL_CONSTRUCTORS(P2PTransportChannel);
 };

@@ -62,7 +62,8 @@ public:
   virtual const std::string& nickname() const;
   virtual const Jid member_jid() const;
   virtual XmppReturnStatus RequestEnterChatroom(const std::string& password,
-      const std::string& client_version);
+      const std::string& client_version,
+      const std::string& locale);
   virtual XmppReturnStatus RequestExitChatroom();
   virtual XmppReturnStatus RequestConnectionStatusChange(
       XmppPresenceConnectionStatus connection_status);
@@ -273,7 +274,8 @@ std::string GetAttrValueFor(XmppPresenceConnectionStatus connection_status) {
 XmppReturnStatus
 XmppChatroomModuleImpl::RequestEnterChatroom(
     const std::string& password,
-    const std::string& client_version) {
+    const std::string& client_version,
+    const std::string& locale) {
   UNUSED(password);
   if (!engine())
     return XMPP_RETURN_BADSTATE;
@@ -297,6 +299,13 @@ XmppChatroomModuleImpl::RequestEnterChatroom(
                                                         false);
     client_version_element->SetBodyText(client_version);
     muc_x->AddElement(client_version_element);
+  }
+
+  if (!locale.empty()) {
+    XmlElement* locale_element = new XmlElement(QN_LOCALE, false);
+
+    locale_element->SetBodyText(locale);
+    muc_x->AddElement(locale_element);
   }
 
   XmppReturnStatus status = engine()->SendStanza(&element);
@@ -628,13 +637,16 @@ XmppChatroomModuleImpl::GetEnterFailureFromXml(const XmlElement* presence) {
 XmppChatroomExitedStatus
 XmppChatroomModuleImpl::GetExitFailureFromXml(const XmlElement* presence) {
   XmppChatroomExitedStatus status = XMPP_CHATROOM_EXITED_UNSPECIFIED;
-  const XmlElement* error = presence->FirstNamed(QN_ERROR);
-  if (error != NULL && error->HasAttr(QN_CODE)) {
-    int code = atoi(error->Attr(QN_CODE).c_str());
-    switch (code) {
-      case 307: status = XMPP_CHATROOM_EXITED_KICKED; break;
-      case 322: status = XMPP_CHATROOM_EXITED_NOT_A_MEMBER; break;
-      case 332: status = XMPP_CHATROOM_EXITED_SYSTEM_SHUTDOWN; break;
+  const XmlElement* muc_user = presence->FirstNamed(QN_MUC_USER_X);
+  if (muc_user != NULL) {
+    const XmlElement* user_status = muc_user->FirstNamed(QN_MUC_USER_STATUS);
+    if (user_status != NULL && user_status->HasAttr(QN_CODE)) {
+      int code = atoi(user_status->Attr(QN_CODE).c_str());
+      switch (code) {
+        case 307: status = XMPP_CHATROOM_EXITED_KICKED; break;
+        case 322: status = XMPP_CHATROOM_EXITED_NOT_A_MEMBER; break;
+        case 332: status = XMPP_CHATROOM_EXITED_SYSTEM_SHUTDOWN; break;
+      }
     }
   }
   return status;

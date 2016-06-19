@@ -132,6 +132,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="talk\p2p\base\asyncstuntcpsocket.h" />
+    <ClInclude Include="talk\p2p\base\basicpacketsocketfactory.h" />
     <ClInclude Include="talk\p2p\base\candidate.h" />
     <ClInclude Include="talk\p2p\base\common.h" />
     <ClInclude Include="talk\p2p\base\constants.h" />
@@ -183,9 +185,31 @@
     <ClInclude Include="talk\p2p\client\sessionmanagertask.h" />
     <ClInclude Include="talk\p2p\client\sessionsendtask.h" />
     <ClInclude Include="talk\p2p\client\socketmonitor.h" />
+    <ClInclude Include="talk\session\media\audiomonitor.h" />
+    <ClInclude Include="talk\session\media\call.h" />
+    <ClInclude Include="talk\session\media\channel.h" />
+    <ClInclude Include="talk\session\media\channelmanager.h" />
+    <ClInclude Include="talk\session\media\currentspeakermonitor.h" />
+    <ClInclude Include="talk\session\media\mediamessages.h" />
+    <ClInclude Include="talk\session\media\mediamonitor.h" />
+    <ClInclude Include="talk\session\media\mediarecorder.h" />
+    <ClInclude Include="talk\session\media\mediasession.h" />
+    <ClInclude Include="talk\session\media\mediasessionclient.h" />
+    <ClInclude Include="talk\session\media\mediasink.h" />
+    <ClInclude Include="talk\session\media\rtcpmuxfilter.h" />
+    <ClInclude Include="talk\session\media\soundclip.h" />
+    <ClInclude Include="talk\session\media\srtpfilter.h" />
+    <ClInclude Include="talk\session\media\ssrcmuxfilter.h" />
+    <ClInclude Include="talk\session\media\typingmonitor.h" />
+    <ClInclude Include="talk\session\media\voicechannel.h" />
+    <ClInclude Include="talk\session\tunnel\pseudotcpchannel.h" />
+    <ClInclude Include="talk\session\tunnel\securetunnelsessionclient.h" />
+    <ClInclude Include="talk\session\tunnel\tunnelsessionclient.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="talk\p2p\base\constants1.cc" />
+    <ClCompile Include="talk\p2p\base\asyncstuntcpsocket.cc" />
+    <ClCompile Include="talk\p2p\base\basicpacketsocketfactory.cc" />
+    <ClCompile Include="talk\p2p\base\constants.cc" />
     <ClCompile Include="talk\p2p\base\dtlstransportchannel.cc" />
     <ClCompile Include="talk\p2p\base\p2ptransport.cc" />
     <ClCompile Include="talk\p2p\base\p2ptransportchannel.cc" />
@@ -218,6 +242,24 @@
     <ClCompile Include="talk\p2p\client\connectivitychecker.cc" />
     <ClCompile Include="talk\p2p\client\httpportallocator.cc" />
     <ClCompile Include="talk\p2p\client\socketmonitor.cc" />
+    <ClCompile Include="talk\session\media\audiomonitor.cc" />
+    <ClCompile Include="talk\session\media\call.cc" />
+    <ClCompile Include="talk\session\media\channel.cc" />
+    <ClCompile Include="talk\session\media\channelmanager.cc" />
+    <ClCompile Include="talk\session\media\currentspeakermonitor.cc" />
+    <ClCompile Include="talk\session\media\mediamessages.cc" />
+    <ClCompile Include="talk\session\media\mediamonitor.cc" />
+    <ClCompile Include="talk\session\media\mediarecorder.cc" />
+    <ClCompile Include="talk\session\media\mediasession.cc" />
+    <ClCompile Include="talk\session\media\mediasessionclient.cc" />
+    <ClCompile Include="talk\session\media\rtcpmuxfilter.cc" />
+    <ClCompile Include="talk\session\media\soundclip.cc" />
+    <ClCompile Include="talk\session\media\srtpfilter.cc" />
+    <ClCompile Include="talk\session\media\ssrcmuxfilter.cc" />
+    <ClCompile Include="talk\session\media\typingmonitor.cc" />
+    <ClCompile Include="talk\session\tunnel\pseudotcpchannel.cc" />
+    <ClCompile Include="talk\session\tunnel\securetunnelsessionclient.cc" />
+    <ClCompile Include="talk\session\tunnel\tunnelsessionclient.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

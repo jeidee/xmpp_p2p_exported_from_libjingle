@@ -215,16 +215,21 @@ bool TransportProxy::SetupMux(TransportProxy* target) {
     return true;
   }
 
-  // Replace the impl for all the TransportProxyChannels with the channels
-  // from |target|'s transport. Fail if there's not an exact match.
+  // Run through all channels and remove any non-rtp transport channels before
+  // setting target transport channels.
   for (ChannelMap::const_iterator iter = channels_.begin();
        iter != channels_.end(); ++iter) {
     if (!target->transport_->get()->HasChannel(iter->first)) {
-      return false;
+      // Remove if channel doesn't exist in |transport_|.
+      iter->second->SetImplementation(NULL);
+    } else {
+      // Replace the impl for all the TransportProxyChannels with the channels
+      // from |target|'s transport. Fail if there's not an exact match.
+      iter->second->SetImplementation(
+          target->transport_->get()->CreateChannel(iter->first));
     }
-    iter->second->SetImplementation(
-        target->transport_->get()->CreateChannel(iter->first));
   }
+
   // Now replace our transport. Must happen afterwards because
   // it deletes all impls as a side effect.
   transport_ = target->transport_;
@@ -291,8 +296,12 @@ std::string BaseSession::StateToString(State state) {
       return "STATE_SENTINITIATE";
     case Session::STATE_RECEIVEDINITIATE:
       return "STATE_RECEIVEDINITIATE";
+    case Session::STATE_SENTPRACCEPT:
+      return "STATE_SENTPRACCEPT";
     case Session::STATE_SENTACCEPT:
       return "STATE_SENTACCEPT";
+    case Session::STATE_RECEIVEDPRACCEPT:
+      return "STATE_RECEIVEDPRACCEPT";
     case Session::STATE_RECEIVEDACCEPT:
       return "STATE_RECEIVEDACCEPT";
     case Session::STATE_SENTMODIFY:
@@ -521,6 +530,27 @@ cricket::Transport* BaseSession::CreateTransport(
       port_allocator(), identity_);
 }
 
+bool BaseSession::GetStats(SessionStats* stats) {
+  for (TransportMap::iterator iter = transports_.begin();
+       iter != transports_.end(); ++iter) {
+    std::string proxy_id = iter->second->content_name();
+    // We are ignoring not-yet-instantiated transports.
+    if (iter->second->impl()) {
+      std::string transport_id = iter->second->impl()->content_name();
+      stats->proxy_to_transport[proxy_id] = transport_id;
+      if (stats->transport_stats.find(transport_id)
+          == stats->transport_stats.end()) {
+        TransportStats subinfos;
+        if (!iter->second->impl()->GetStats(&subinfos)) {
+          return false;
+        }
+        stats->transport_stats[transport_id] = subinfos;
+      }
+    }
+  }
+  return true;
+}
+
 void BaseSession::SetState(State state) {
   ASSERT(signaling_thread_->IsCurrent());
   if (state != state_) {
@@ -529,6 +559,7 @@ void BaseSession::SetState(State state) {
     SignalState(this, state_);
     signaling_thread_->Post(this, MSG_STATE);
   }
+  SignalNewDescription();
 }
 
 void BaseSession::SetError(Error error) {
@@ -647,7 +678,6 @@ bool BaseSession::SetSelectedProxy(const std::string& content_name,
       return false;
     }
   }
-
   return true;
 }
 
@@ -659,7 +689,9 @@ void BaseSession::OnTransportCandidatesAllocationDone(Transport* transport) {
   // Transport, since this removes the need to manually iterate over all
   // the transports, as is needed to make sure signals are handled properly
   // when BUNDLEing.
+#if 0
   ASSERT(!IsCandidateAllocationDone());
+#endif
   for (TransportMap::iterator iter = transports_.begin();
        iter != transports_.end(); ++iter) {
     if (iter->second->impl() == transport) {
@@ -720,6 +752,54 @@ bool BaseSession::GetTransportDescription(const SessionDescription* description,
     return false;
   }
   *tdesc = transport_info->description;
+  return true;
+}
+
+void BaseSession::SignalNewDescription() {
+  ContentAction action;
+  ContentSource source;
+  if (!GetContentAction(&action, &source)) {
+    return;
+  }
+  if (source == CS_LOCAL) {
+    SignalNewLocalDescription(this, action);
+  } else {
+    SignalNewRemoteDescription(this, action);
+  }
+}
+
+bool BaseSession::GetContentAction(ContentAction* action,
+                                   ContentSource* source) {
+  switch (state_) {
+    // new local description
+    case STATE_SENTINITIATE:
+      *action = CA_OFFER;
+      *source = CS_LOCAL;
+      break;
+    case STATE_SENTPRACCEPT:
+      *action = CA_PRANSWER;
+      *source = CS_LOCAL;
+      break;
+    case STATE_SENTACCEPT:
+      *action = CA_ANSWER;
+      *source = CS_LOCAL;
+      break;
+    // new remote description
+    case STATE_RECEIVEDINITIATE:
+      *action = CA_OFFER;
+      *source = CS_REMOTE;
+      break;
+    case STATE_RECEIVEDPRACCEPT:
+      *action = CA_PRANSWER;
+      *source = CS_REMOTE;
+      break;
+    case STATE_RECEIVEDACCEPT:
+      *action = CA_ANSWER;
+      *source = CS_REMOTE;
+      break;
+    default:
+      return false;
+  }
   return true;
 }
 
@@ -961,6 +1041,11 @@ CandidateTranslatorMap Session::GetCandidateTranslators() {
 ContentParserMap Session::GetContentParsers() {
   ContentParserMap parsers;
   parsers[content_type()] = client_;
+  // We need to be able parse both RTP-based and SCTP-based Jingle
+  // with the same client.
+  if (content_type() == NS_JINGLE_RTP) {
+    parsers[NS_JINGLE_DRAFT_SCTP] = client_;
+  }
   return parsers;
 }
 
@@ -1348,6 +1433,11 @@ bool Session::OnRedirectError(const SessionRedirect& redirect,
 
 bool Session::CheckState(State expected, MessageError* error) {
   if (state() != expected) {
+    // The server can deliver messages out of order/repeated for various
+    // reasons. For example, if the server does not recive our iq response,
+    // it could assume that the iq it sent was lost, and will then send
+    // it again. Ideally, we should implement reliable messaging with
+    // duplicate elimination.
     return BadMessage(buzz::QN_STANZA_NOT_ALLOWED,
                       "message not allowed in current state",
                       error);

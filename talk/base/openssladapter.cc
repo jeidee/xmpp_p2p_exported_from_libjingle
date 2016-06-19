@@ -661,7 +661,8 @@ bool OpenSSLAdapter::VerifyServerName(SSL* ssl, const char* host,
   if (!certificate)
     return false;
 
-#ifdef _DEBUG
+  // Logging certificates is extremely verbose. So it is disabled by default.
+#ifdef LOG_CERTIFICATES
   {
     LOG(LS_INFO) << "Certificate from server:";
     BIO* mem = BIO_new(BIO_s_mem());
@@ -879,9 +880,13 @@ bool OpenSSLAdapter::ConfigureTrustedRootCertificates(SSL_CTX* ctx) {
 SSL_CTX*
 OpenSSLAdapter::SetupSSLContext() {
   SSL_CTX* ctx = SSL_CTX_new(TLSv1_client_method());
-  if (ctx == NULL)
+  if (ctx == NULL) {
+    unsigned long error = ERR_get_error();  // NOLINT: type used by OpenSSL.
+    LOG(LS_WARNING) << "SSL_CTX creation failed: "
+                    << '"' << ERR_reason_error_string(error) << "\" "
+                    << "(error=" << error << ')';
     return NULL;
-
+  }
   if (!ConfigureTrustedRootCertificates(ctx)) {
     SSL_CTX_free(ctx);
     return NULL;

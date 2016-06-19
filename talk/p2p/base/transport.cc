@@ -57,15 +57,16 @@ enum {
   MSG_ROLECONFLICT = 15,
   MSG_SETROLE = 16,
   MSG_SETLOCALDESCRIPTION = 17,
-  MSG_SETREMOTEDESCRIPTION = 18
+  MSG_SETREMOTEDESCRIPTION = 18,
+  MSG_GETSTATS = 19
 };
 
 struct ChannelParams : public talk_base::MessageData {
   ChannelParams() : channel(NULL), candidate(NULL) {}
   explicit ChannelParams(int component)
       : component(component), channel(NULL), candidate(NULL) {}
-  explicit ChannelParams(Candidate* candidate) :
-      channel(NULL), candidate(candidate) {
+  explicit ChannelParams(Candidate* candidate)
+      : channel(NULL), candidate(candidate) {
   }
 
   ~ChannelParams() {
@@ -87,6 +88,20 @@ struct TransportDescriptionParams : public talk_base::MessageData {
   bool result;
 };
 
+struct TransportRoleParam : public talk_base::MessageData {
+  explicit TransportRoleParam(TransportRole role) : role(role) {}
+
+  TransportRole role;
+};
+
+struct StatsParam : public talk_base::MessageData {
+  explicit StatsParam(TransportStats* stats)
+      : stats(stats), result(false) {}
+
+  TransportStats* stats;
+  bool result;
+};
+
 Transport::Transport(talk_base::Thread* signaling_thread,
                      talk_base::Thread* worker_thread,
                      const std::string& content_name,
@@ -100,10 +115,12 @@ Transport::Transport(talk_base::Thread* signaling_thread,
     destroyed_(false),
     readable_(TRANSPORT_STATE_NONE),
     writable_(TRANSPORT_STATE_NONE),
+    was_writable_(false),
     connect_requested_(false),
     role_(ROLE_UNKNOWN),
     tiebreaker_(0),
-    protocol_(ICEPROTO_HYBRID) {
+    protocol_(ICEPROTO_HYBRID),
+    remote_ice_mode_(ICEMODE_FULL) {
 }
 
 Transport::~Transport() {
@@ -112,8 +129,8 @@ Transport::~Transport() {
 }
 
 void Transport::SetRole(TransportRole role) {
-  role_ = role;
-  worker_thread()->Send(this, MSG_SETROLE);
+  TransportRoleParam param(role);
+  worker_thread()->Send(this, MSG_SETROLE, &param);
 }
 
 bool Transport::SetLocalTransportDescription(
@@ -167,6 +184,7 @@ TransportChannelImpl* Transport::CreateChannel_w(int component) {
   if (local_description_) {
     ApplyLocalTransportDescription_w(impl);
     if (remote_description_) {
+      ApplyRemoteTransportDescription_w(impl);
       ApplyNegotiatedTransportDescription_w(impl);
     }
   }
@@ -262,7 +280,7 @@ void Transport::ConnectChannels_w() {
     TransportDescription desc(NS_GINGLE_P2P, std::vector<std::string>(),
                               talk_base::CreateRandomString(ICE_UFRAG_LENGTH),
                               talk_base::CreateRandomString(ICE_PWD_LENGTH),
-                              NULL, Candidates());
+                              ICEMODE_FULL, NULL, Candidates());
     SetLocalTransportDescription_w(desc, CA_OFFER);
   }
 
@@ -368,6 +386,31 @@ bool Transport::VerifyCandidate(const Candidate& cand, std::string* error) {
   return true;
 }
 
+
+bool Transport::GetStats(TransportStats* stats) {
+  ASSERT(signaling_thread()->IsCurrent());
+  StatsParam params(stats);
+  worker_thread()->Send(this, MSG_GETSTATS, &params);
+  return params.result;
+}
+
+bool Transport::GetStats_w(TransportStats* stats) {
+  ASSERT(worker_thread()->IsCurrent());
+  stats->content_name = content_name();
+  stats->channel_stats.clear();
+  for (ChannelMap::iterator iter = channels_.begin();
+       iter != channels_.end();
+       ++iter) {
+    TransportChannelStats substats;
+    substats.component = iter->second->component();
+    if (!iter->second->GetStats(&substats.connection_infos)) {
+      return false;
+    }
+    stats->channel_stats.push_back(substats);
+  }
+  return true;
+}
+
 void Transport::OnRemoteCandidates(const std::vector<Candidate>& candidates) {
   for (std::vector<Candidate>::const_iterator iter = candidates.begin();
        iter != candidates.end();
@@ -422,6 +465,7 @@ void Transport::OnChannelWritableState_s() {
   ASSERT(signaling_thread()->IsCurrent());
   TransportState writable = GetTransportState_s(false);
   if (writable_ != writable) {
+    was_writable_ = (writable_ == TRANSPORT_STATE_ALL);
     writable_ = writable;
     SignalWritableState(this);
   }
@@ -518,7 +562,7 @@ void Transport::OnChannelCandidatesAllocationDone(
   talk_base::CritScope cs(&crit_);
   ChannelMap::iterator iter = channels_.find(channel->component());
   ASSERT(iter != channels_.end());
-  LOG(LS_INFO) << "Transport: " << content_name_ << ", component " 
+  LOG(LS_INFO) << "Transport: " << content_name_ << ", component "
                << channel->component() << " allocation complete";
   iter->second.set_candidates_allocated(true);
 
@@ -542,11 +586,22 @@ void Transport::OnRoleConflict(TransportChannelImpl* channel) {
   signaling_thread_->Post(this, MSG_ROLECONFLICT);
 }
 
-void Transport::SetRole_w() {
+void Transport::SetRole_w(TransportRole role) {
   talk_base::CritScope cs(&crit_);
+  role_ = role;
   for (ChannelMap::iterator iter = channels_.begin();
        iter != channels_.end(); ++iter) {
     iter->second->SetRole(role_);
+  }
+}
+
+void Transport::SetRemoteIceMode_w(IceMode mode) {
+  talk_base::CritScope cs(&crit_);
+  remote_ice_mode_ = mode;
+  // Shouldn't channels be created after this method executed?
+  for (ChannelMap::iterator iter = channels_.begin();
+       iter != channels_.end(); ++iter) {
+    iter->second->SetRemoteIceMode(remote_ice_mode_);
   }
 }
 
@@ -576,23 +631,34 @@ bool Transport::SetRemoteTransportDescription_w(
   talk_base::CritScope cs(&crit_);
   remote_description_.reset(new TransportDescription(desc));
 
+  for (ChannelMap::iterator iter = channels_.begin();
+       iter != channels_.end(); ++iter) {
+    ret &= ApplyRemoteTransportDescription_w(iter->second.get());
+  }
+
   // If PRANSWER/ANSWER is set, we should decide transport protocol type.
   if (action == CA_PRANSWER || action == CA_ANSWER) {
     ret = NegotiateTransportDescription_w(CA_OFFER);
   }
-
   return ret;
 }
 
 bool Transport::ApplyLocalTransportDescription_w(TransportChannelImpl* ch) {
-  ch->SetIceUfrag(local_description_->ice_ufrag);
-  ch->SetIcePwd(local_description_->ice_pwd);
+  ch->SetIceCredentials(local_description_->ice_ufrag,
+                        local_description_->ice_pwd);
+  return true;
+}
+
+bool Transport::ApplyRemoteTransportDescription_w(TransportChannelImpl* ch) {
+  ch->SetRemoteIceCredentials(remote_description_->ice_ufrag,
+                              remote_description_->ice_pwd);
   return true;
 }
 
 void Transport::ApplyNegotiatedTransportDescription_w(
     TransportChannelImpl* channel) {
   channel->SetIceProtocolType(protocol_);
+  channel->SetRemoteIceMode(remote_ice_mode_);
 }
 
 bool Transport::NegotiateTransportDescription_w(ContentAction local_role_) {
@@ -626,6 +692,16 @@ bool Transport::NegotiateTransportDescription_w(ContentAction local_role_) {
     return false;
   }
   protocol_ = answer_proto == ICEPROTO_HYBRID ? ICEPROTO_GOOGLE : answer_proto;
+
+  // If transport is in ROLE_CONTROLLED and remote end point supports only
+  // ice_lite, this local end point should take CONTROLLING role.
+  if (role_ == ROLE_CONTROLLED &&
+      remote_description_->ice_mode == ICEMODE_LITE) {
+    SetRole_w(ROLE_CONTROLLING);
+  }
+
+  // Update remote ice_mode to all existing channels.
+  remote_ice_mode_ = remote_description_->ice_mode;
 
   // Now that we have negotiated everything, push it downward.
   // Note that we cache the result so that if we have race conditions
@@ -700,8 +776,11 @@ void Transport::OnMessage(talk_base::Message* msg) {
     case MSG_ROLECONFLICT:
       SignalRoleConflict();
       break;
-    case MSG_SETROLE:
-      SetRole_w();
+    case MSG_SETROLE: {
+        TransportRoleParam* param =
+            static_cast<TransportRoleParam*>(msg->pdata);
+        SetRole_w(param->role);
+      }
       break;
     case MSG_SETLOCALDESCRIPTION: {
         TransportDescriptionParams* params =
@@ -715,6 +794,11 @@ void Transport::OnMessage(talk_base::Message* msg) {
             static_cast<TransportDescriptionParams*>(msg->pdata);
         params->result = SetRemoteTransportDescription_w(params->desc,
                                                          params->action);
+      }
+      break;
+    case MSG_GETSTATS: {
+        StatsParam* params = static_cast<StatsParam*>(msg->pdata);
+        params->result = GetStats_w(params->stats);
       }
       break;
   }

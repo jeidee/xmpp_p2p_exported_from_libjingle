@@ -140,7 +140,7 @@ class HttpPortAllocatorSessionBase : public BasicPortAllocatorSession {
   std::string GetSessionRequestUrl();
 
  private:
-  //FRIEND_TEST(::HttpPortAllocatorTest, TestSessionRequestUrl);
+//  FRIEND_TEST(::HttpPortAllocatorTest, TestSessionRequestUrl);
 
   std::vector<std::string> relay_hosts_;
   std::vector<talk_base::SocketAddress> stun_hosts_;

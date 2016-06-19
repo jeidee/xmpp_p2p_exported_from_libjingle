@@ -57,6 +57,9 @@ static const int SERIAL_RAND_BITS = 64;
 
 // Certificate validity lifetime
 static const int CERTIFICATE_LIFETIME = 60*60*24*365;  // one year, arbitrarily
+// Certificate validity window.
+// This is to compensate for slightly incorrect system clocks.
+static const int CERTIFICATE_WINDOW = -60*60*24;
 
 // Generate a key pair. Caller is responsible for freeing the returned object.
 static EVP_PKEY* MakeKey() {
@@ -130,7 +133,7 @@ static X509* MakeCertificate(EVP_PKEY* pkey, const char* common_name) {
       !X509_set_issuer_name(x509, name))
     goto error;
 
-  if (!X509_gmtime_adj(X509_get_notBefore(x509), 0) ||
+  if (!X509_gmtime_adj(X509_get_notBefore(x509), CERTIFICATE_WINDOW) ||
       !X509_gmtime_adj(X509_get_notAfter(x509), CERTIFICATE_LIFETIME))
     goto error;
 
@@ -212,7 +215,7 @@ OpenSSLCertificate* OpenSSLCertificate::Generate(
 }
 
 OpenSSLCertificate* OpenSSLCertificate::FromPEMString(
-    const std::string& pem_string, int* pem_length) {
+    const std::string& pem_string) {
   BIO* bio = BIO_new_mem_buf(const_cast<char*>(pem_string.c_str()), -1);
   if (!bio)
     return NULL;
@@ -220,11 +223,7 @@ OpenSSLCertificate* OpenSSLCertificate::FromPEMString(
   BIO_set_mem_eof_return(bio, 0);
   X509 *x509 = PEM_read_bio_X509(bio, NULL, NULL,
                                  const_cast<char*>("\0"));
-  char *ptr;
-  int remaining_length = BIO_get_mem_data(bio, &ptr);
   BIO_free(bio);
-  if (pem_length)
-    *pem_length = pem_string.length() - remaining_length;
   if (x509)
     return new OpenSSLCertificate(x509);
   else
@@ -294,6 +293,36 @@ OpenSSLIdentity* OpenSSLIdentity::Generate(const std::string& common_name) {
   }
   LOG(LS_INFO) << "Identity generation failed";
   return NULL;
+}
+
+SSLIdentity* OpenSSLIdentity::FromPEMStrings(
+    const std::string& private_key,
+    const std::string& certificate) {
+  scoped_ptr<OpenSSLCertificate> cert(
+      OpenSSLCertificate::FromPEMString(certificate));
+  if (!cert) {
+    LOG(LS_ERROR) << "Failed to create OpenSSLCertificate from PEM string.";
+    return NULL;
+  }
+
+  BIO* bio = BIO_new_mem_buf(const_cast<char*>(private_key.c_str()), -1);
+  if (!bio) {
+    LOG(LS_ERROR) << "Failed to create a new BIO buffer.";
+    return NULL;
+  }
+  (void)BIO_set_close(bio, BIO_NOCLOSE);
+  BIO_set_mem_eof_return(bio, 0);
+  EVP_PKEY *pkey = PEM_read_bio_PrivateKey(bio, NULL, NULL,
+                                           const_cast<char*>("\0"));
+  BIO_free(bio);
+
+  if (!pkey) {
+    LOG(LS_ERROR) << "Failed to create the private key from PEM string.";
+    return NULL;
+  }
+
+  return new OpenSSLIdentity(new OpenSSLKeyPair(pkey),
+                             cert.release());
 }
 
 bool OpenSSLIdentity::ConfigureIdentity(SSL_CTX* ctx) {

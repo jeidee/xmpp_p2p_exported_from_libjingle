@@ -111,9 +111,6 @@
     <ClInclude Include="talk\xmpp\saslplainmechanism.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="talk\xmpp\util_unittest.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="talk\xmpp\xmppauth.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -213,9 +210,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="talk\xmpp\saslmechanism.cc">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="talk\xmpp\util_unittest.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="talk\xmpp\xmppauth.cc">

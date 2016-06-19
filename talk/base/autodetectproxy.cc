@@ -29,11 +29,8 @@
 #include "talk/base/httpcommon.h"
 #include "talk/base/httpcommon-inl.h"
 #include "talk/base/nethelpers.h"
-#include "talk/base/proxydetect.h"
 
 namespace talk_base {
-
-enum { MSG_TIMEOUT = SignalThread::ST_MSG_FIRST_AVAILABLE };
 
 static const ProxyType TEST_ORDER[] = {
   PROXY_HTTPS, PROXY_SOCKS5, PROXY_UNKNOWN
@@ -62,7 +59,7 @@ void AutoDetectProxy::DoWork() {
   // TODO: Try connecting to server_url without proxy first here?
   if (!server_url_.empty()) {
     LOG(LS_INFO) << "GetProxySettingsForUrl(" << server_url_ << ") - start";
-    GetProxySettingsForUrl(agent_.c_str(), server_url_.c_str(), proxy_, true);
+    GetProxyForUrl(agent_.c_str(), server_url_.c_str(), &proxy_);
     LOG(LS_INFO) << "GetProxySettingsForUrl - stop";
   }
   Url<char> url(proxy_.address.HostAsURIString());
@@ -165,7 +162,7 @@ void AutoDetectProxy::Next() {
   }
 
   LOG(LS_VERBOSE) << "AutoDetectProxy connecting to "
-                  << proxy_.address.ToString();
+                  << proxy_.address.ToSensitiveString();
 
   if (socket_) {
     Thread::Current()->Clear(this, MSG_TIMEOUT);
@@ -216,7 +213,8 @@ void AutoDetectProxy::Complete(ProxyType type) {
 
   proxy_.type = type;
   LoggingSeverity sev = (proxy_.type == PROXY_UNKNOWN) ? LS_ERROR : LS_INFO;
-  LOG_V(sev) << "AutoDetectProxy detected " << proxy_.address.ToString()
+  LOG_V(sev) << "AutoDetectProxy detected "
+             << proxy_.address.ToSensitiveString()
              << " as type " << proxy_.type;
 
   Thread::Current()->Quit();

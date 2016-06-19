@@ -29,9 +29,6 @@
 
 #ifdef WIN32
 #include "talk/base/win32.h"
-#include "talk/base/win32filesystem.h"
-#else
-#include "talk/base/unixfilesystem.h"
 #endif
 
 #include "talk/base/pathutils.h"
@@ -39,6 +36,11 @@
 #include "talk/base/stringutils.h"
 #include "talk/base/stream.h"
 
+#ifdef WIN32
+#include "talk/base/win32filesystem.h"
+#else
+#include "talk/base/unixfilesystem.h"
+#endif
 
 #ifndef WIN32
 #define MAX_PATH 260

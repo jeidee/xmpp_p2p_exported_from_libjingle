@@ -493,9 +493,15 @@ void BasicNetworkManager::DumpNetworks(bool include_ignored) {
   for (size_t i = 0; i < list.size(); ++i) {
     const Network* network = list[i];
     if (!network->ignored() || include_ignored) {
-      LOG(LS_INFO) << network->ToString() << ": " << network->description()
+      LOG(LS_INFO) << network->ToString() << ": "
+                   << network->description()
                    << ((network->ignored()) ? ", Ignored" : "");
     }
+  }
+  // Release the network list created previously.
+  // Do this in a seperated for loop for better readability.
+  for (size_t i = 0; i < list.size(); ++i) {
+    delete list[i];
   }
 }
 
@@ -512,7 +518,7 @@ std::string Network::ToString() const {
   // Print out the first space-terminated token of the network desc, plus
   // the IP address.
   ss << "Net[" << description_.substr(0, description_.find(' '))
-     << ":" << prefix_ << "/" << prefix_length_ << "]";
+     << ":" << prefix_.ToSensitiveString() << "/" << prefix_length_ << "]";
   return ss.str();
 }
 
