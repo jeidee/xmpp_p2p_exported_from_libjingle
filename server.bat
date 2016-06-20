@@ -1,0 +1,1 @@
+start Debug\p2p_test.exe --xmpp-host=10.5.23.33 --xmpp-port=5223 --xmpp-use-tls=true test1@bypass

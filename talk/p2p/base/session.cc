@@ -842,7 +842,7 @@ Session::Session(SessionManager* session_manager,
   transport_parser_ = new P2PTransportParser();
   client_ = client;
   initiate_acked_ = false;
-  current_protocol_ = PROTOCOL_HYBRID;
+  current_protocol_ = PROTOCOL_JINGLE;//PROTOCOL_HYBRID;
 }
 
 Session::~Session() {
